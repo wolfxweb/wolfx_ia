@@ -2,8 +2,13 @@
 # Generate one from your settings: https://huggingface.co/settings/tokens
 git clone https://huggingface.co/spaces/celobo/wolfx-meta-llama-Meta-Llama-3-70B
 
+CREATE USER 'usuario_externo'@'%' IDENTIFIED BY 'senha_externa';
+GRANT ALL PRIVILEGES ON *.* TO 'usuario_externo'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 
-crie um arquivo dockerfile e docker-compose
+FLUSH PRIVILEGES;
+crie um arquivo der
+ckerfile e docker-compose
 instale 
     fastapi, 
     langchanin,

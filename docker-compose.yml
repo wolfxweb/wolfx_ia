@@ -10,6 +10,22 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql  
 
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.1
+    ports:
+      - "8080:80"
+    environment:
+      PMA_ARBITRARY: 1
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: wolfx_bd
+    depends_on:
+      - mysql
+
+  
+
   fastapi:
     build:
       context: .

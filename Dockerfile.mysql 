@@ -12,7 +12,8 @@ COPY my.cnf /etc/mysql/my.cnf
 
 # Copie o script de inicialização SQL para o diretório de inicialização do MySQL
 COPY init.sql /docker-entrypoint-initdb.d/
-
+# Copiar arquivos de configuração
+#COPY my.cnf /etc/mysql/my.cnf
 # Expor a porta padrão do MySQL
 EXPOSE 3306
 

@@ -60,38 +60,82 @@ def root():
     else:
         return {"message": "Erro ao conectar com o MySQL."}
 
-@app.get("/tabela")
-def root():
-    conn = get_db_connection()
-    if conn:
-        cursor = conn.cursor()
-        # Criação da tabela 'usuarios' se não existir
-        create_table_query = """
-        CREATE TABLE IF NOT EXISTS usuarios (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            nome VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL,
-            senha VARCHAR(255) NOT NULL,
-            nivel_acesso VARCHAR(50) NOT NULL
-        )
-        """
-        cursor.execute(create_table_query)
-        conn.commit()
+# @app.get("/tabela")
+# def root():
+#     conn = get_db_connection()
+#     if conn:
+#         cursor = conn.cursor()
+#         # Criação da tabela 'usuarios' se não existir
+#         create_table_query = """
+#         CREATE TABLE IF NOT EXISTS usuarios (
+#             id INT AUTO_INCREMENT PRIMARY KEY,
+#             nome VARCHAR(255) NOT NULL,
+#             email VARCHAR(255) NOT NULL,
+#             senha VARCHAR(255) NOT NULL,
+#             nivel_acesso VARCHAR(50) NOT NULL
+#         )
+#         """
+#         cursor.execute(create_table_query)
+#         conn.commit()
         
-        # Verificar se a tabela foi criada com sucesso
-        cursor.execute("SHOW TABLES LIKE 'usuarios'")
-        result = cursor.fetchone()
-        conn.close()
+#         # Verificar se a tabela foi criada com sucesso
+#         cursor.execute("SHOW TABLES LIKE 'usuarios'")
+#         result = cursor.fetchone()
+#         conn.close()
         
-        if result:
-            return {"message": "Tabela 'usuarios' criada com sucesso."}
-        else:
-            return {"message": "Erro ao criar a tabela 'usuarios'."}
-    else:
-        return {"message": "Erro ao conectar com o MySQL."}
+#         if result:
+#             return {"message": "Tabela 'usuarios' criada com sucesso."}
+#         else:
+#             return {"message": "Erro ao criar a tabela 'usuarios'."}
+#     else:
+#         return {"message": "Erro ao conectar com o MySQL."}
  
+# Rota para executar os comandos SQL
+# Rota para executar os comandos SQL
+# @app.post("/executar-sql")
+# def executar_sql():
+#     try:
+#         conn = get_db_connection()
+#         cursor = conn.cursor()
 
+#         # Ler e executar o script SQL
+#         with open('init.sql', 'r') as file:
+#             sql_commands = file.read().split(';')
+
+#         for command in sql_commands:
+#             if command.strip() != '':
+#                 cursor.execute(command)
+
+#         conn.commit()
+#         conn.close()
+
+#         return {"message": "Comandos SQL executados com sucesso"}
+
+#     except mysql.connector.Error as e:
+#         return {"error": f"Erro ao executar comandos SQL: {e}"}@app.post("/executar-sql")
+# def executar_sql():
+#     try:
+#         conn = get_db_connection()
+#         cursor = conn.cursor()
+
+#         # Comandos SQL a serem executados
+#         sql_commands = [
+#             "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;",
+#             "FLUSH PRIVILEGES;"
+#         ]
+
+#         for command in sql_commands:
+#             cursor.execute(command)
+
+#         conn.commit()
+#         conn.close()
+
+#         return {"message": "Comandos SQL executados com sucesso"}
+
+#     except mysql.connector.Error as e:
+#         return {"error": f"Erro ao executar comandos SQL: {e}"}
     
+        
 @app.get("/usuarios", response_model=List[Usuario])
 def listar_usuarios():
     conn = get_db_connection()
