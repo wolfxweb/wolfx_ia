@@ -1,0 +1,31 @@
+# When prompted for a password, use an access token with write permissions.
+# Generate one from your settings: https://huggingface.co/settings/tokens
+git clone https://huggingface.co/spaces/celobo/wolfx-meta-llama-Meta-Llama-3-70B
+
+
+crie um arquivo dockerfile e docker-compose
+instale 
+    fastapi, 
+    langchanin,
+    streanlit,
+    banco de dados mysql 
+Crei um banco de dados com nome wolfx_bd crie um usuario e senha e de aspemissões necssarias
+Crei e uma tabela com nome usuairos com as cooluna id chave primaria auto incremet,
+  nome varchar 200 , email varchar 200, senha varchar 200, nivel acesso vacahar 200.
+
+Copie a pasta app que contem o projeto para o container.
+
+Dentro da pasta app tem um arquivo com nome main_api.py que é aquivo do fast api, nesta mesma 
+pasta tem o arquivo main_app.py que coresponde ao applicatico streamlit
+
+Ao iniciar o contaneirs deve ser possivel acesar estas das aplicação ao mesmo tempo.
+
+Faça o codigo para main da api rest e do app do streanlit 
+
+Faça a conexão entre o fastapi e o banco de dados mysql
+
+ fa-pastafarianism    "></i>
+  quando o container o iniciar  a aplicação streanlit deve esta iniciada e a api dev acesaar o banco de dados o sistema tem um pasta com nome app na raiz do
+
+
+ projeto que deve ser copiada para container e um arquivo de configuração .env
