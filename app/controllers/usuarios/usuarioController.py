@@ -1,9 +1,9 @@
-from pydantic import BaseModel
+
 from typing import List
 import mysql.connector
 import os
 from dotenv import load_dotenv
-
+from models.usuariosModel import Usuario 
 load_dotenv()
 
 # Configuração do banco de dados
@@ -14,13 +14,13 @@ db_config = {
     'database': os.getenv('MYSQL_DATABASE')
 }
 
-# Modelo Pydantic para Usuário
-class Usuario(BaseModel):
-    id: int = None
-    nome: str
-    email: str
-    senha: str
-    nivel_acesso: str
+# # Modelo Pydantic para Usuário
+# class Usuario(BaseModel):
+#     id: int = None
+#     nome: str
+#     email: str
+#     senha: str
+#     nivel_acesso: str
 
 # Classe para manipulação de usuários
 class UsuarioController:
