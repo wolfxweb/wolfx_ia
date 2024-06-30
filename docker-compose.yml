@@ -5,6 +5,7 @@ services:
     ports:
       - "3306:3306"
     environment:
+      PYTHONPATH: /app
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: wolfx_bd
     volumes:
@@ -16,11 +17,13 @@ services:
     ports:
       - "8080:80"
     environment:
+      PYTHONPATH: /app
       PMA_ARBITRARY: 1
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_DATABASE: wolfx_bd
+     
     depends_on:
       - mysql
 
@@ -35,10 +38,12 @@ services:
     depends_on:
       - mysql
     environment:
+      PYTHONPATH: /app
       MYSQL_HOST: mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_DATABASE: wolfx_bd
+    
     env_file:
       - .env
 
@@ -48,6 +53,8 @@ services:
       dockerfile: Dockerfile.streamlit
     ports:
       - "8501:8501"
+    environment:
+      PYTHONPATH: /app
     depends_on:
       - fastapi
 

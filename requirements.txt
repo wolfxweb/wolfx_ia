@@ -14,5 +14,5 @@ pandas
 passlib
 pydantic
 pyjwt
-
-
+SQLAlchemy
+alembic
