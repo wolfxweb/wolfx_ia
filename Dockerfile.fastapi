@@ -10,6 +10,14 @@ COPY ./requirements.txt .
 COPY ./app /app
 COPY .env .
 
+# Instala dependências do sistema operacional
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+    
 # Instalar dependências Python
 RUN pip install --no-cache-dir -r requirements.txt
 

@@ -1,5 +1,4 @@
 # models/usuariosModel.py
-
 from pydantic import BaseModel
 
 class Usuario(BaseModel):
@@ -8,3 +7,6 @@ class Usuario(BaseModel):
     email: str
     senha: str
     nivel_acesso: str
+
+    class Config:
+        orm_mode = True

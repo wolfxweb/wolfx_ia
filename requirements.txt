@@ -14,5 +14,9 @@ pandas
 passlib
 pydantic
 pyjwt
-SQLAlchemy
+sqlalchemy
 alembic
+pymysql
+cryptography
+starlette
+

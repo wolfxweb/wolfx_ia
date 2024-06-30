@@ -1,25 +1,15 @@
-from pydantic import BaseModel
+# routes/usuario_routes.py
+from fastapi import APIRouter, HTTPException
 from typing import List
-from fastapi import APIRouter, HTTPException, Depends
-
+from models.usuariosModel import Usuario
 from controllers.usuarios.usuarioController import UsuarioController
-from models.usuariosModel import Usuario 
+
 router = APIRouter()
-
-
-# class Usuario(BaseModel):
-#     id: int = None
-#     nome: str
-#     email: str
-#     senha: str
-#     nivel_acesso: str
-    
 controller = UsuarioController()
 
 @router.get("/usuarios", response_model=List[Usuario])
 def listar_usuarios():
     return controller.listar_usuarios()
-
 
 @router.get("/usuarios/{usuario_id}", response_model=Usuario)
 def obter_usuario(usuario_id: int):
@@ -41,7 +31,6 @@ def atualizar_usuario(usuario_id: int, usuario: Usuario):
 
 @router.delete("/usuarios/{usuario_id}")
 def deletar_usuario(usuario_id: int):
-    usuario_deletado = controller.deletar_usuario(usuario_id)
-    if usuario_deletado is None:
+    if not controller.deletar_usuario(usuario_id):
         raise HTTPException(status_code=404, detail="Usuário não encontrado")
     return {"message": "Usuário deletado com sucesso"}
